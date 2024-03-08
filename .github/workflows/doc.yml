@@ -13,7 +13,7 @@ jobs:
         with:
           submodules: recursive
 
-      - mkdir -p ${GITHUB_WORKSPACE}/prefix
+      - run: mkdir -p ${GITHUB_WORKSPACE}/prefix
       - name: Generate docs
         run: |
           cd neon
