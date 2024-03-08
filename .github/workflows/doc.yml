@@ -13,11 +13,13 @@ jobs:
         with:
           submodules: recursive
 
-      - run: cd neon
-      - run: ./autogen.sh
-      - run: mkdir -p ${GITHUB_WORKSPACE}/prefix
-      - run: ./configure --prefix=${GITHUB_WORKSPACE}/prefix
-      - run: make docs
+      - mkdir -p ${GITHUB_WORKSPACE}/prefix
+      - name: Generate docs
+        run: |
+          cd neon
+          ./autogen.sh
+          ./configure --prefix=${GITHUB_WORKSPACE}/prefix
+          make docs
 
       - name: Publish generated content to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
