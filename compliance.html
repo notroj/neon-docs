@@ -15,7 +15,7 @@
         the header was not present.  neon will give an error if a
         response includes a <code class="literal">Transfer-Encoding</code>
         header with a value other than <span class="quote">“<span class="quote">identity</span>”</span> or
-        <span class="quote">“<span class="quote">chunked</span>”</span>.</p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="idm87"></a>RFC 2617, HTTP Authentication: Basic and Digest Access Authentication</h3></div></div></div><p>neon is not strictly compliant with the quoting rules
+        <span class="quote">“<span class="quote">chunked</span>”</span>.</p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="idm87"></a>RFC 7616, HTTP Digest Access Authentication</h3></div></div></div><p>neon is not strictly compliant with the quoting rules
         given in the grammar for the <code class="literal">Authorization</code>
         header.  The grammar requires that the <code class="literal">qop</code>
         and <code class="literal">algorithm</code> parameters are not quoted,
@@ -23,7 +23,15 @@
         (Microsoft® IIS 5) rejects the request if these parameters
         are not quoted.  neon sends these parameters with
         quotes—this is not known to cause any problems with
-        other server implementations.</p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="idm93"></a>Namespaces in XML</h3></div></div></div><p>The neon XML parser interface will accept and parse
+        other server implementations.</p><p>RFC 7616 predates RFC 9112 and uses conflicting language
+        around URIs. neon uses the RFC 9112
+        <code class="literal">request-target</code> in both the
+        <code class="literal">A2</code> grammar and the <code class="literal">uri=</code>
+        parameter of the <code class="literal">Authorization</code>
+        header. neon will accept (and resolve) any URI-reference in
+        the <code class="literal">domain=</code> parameter for
+        <code class="literal">WWW-Authenticate</code> response header
+        field.</p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="idm100"></a>Namespaces in XML</h3></div></div></div><p>The neon XML parser interface will accept and parse
         without error some XML documents which are well-formed
         according to the XML specification but do not conform to the
         "Namespaces in XML" specification <a class="xref" href="biblio.html#bib.xmlnames" title="Namespaces in XML">[<abbr class="abbrev">REC-XML-names</abbr>]</a>.  Specifically: the restrictions on
